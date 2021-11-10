@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Admin Page</title>
+        <style>
+            #pet {
+                width: 200px;
+                height: 200px;
+                background-color: black;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id = "pet">
+            <div id = "picture">
+
+            </div>
+            <p id = "petName">Sarah</p>
+            <p id = "petDescript">Ginger</p>
+            <button onclick = "ready()" id = "ready">Ready for Pickup</button>
+            <button onclick = "notes()" id = "notes">Add Notes</button>
+            <input autocomplete="off" type = "hidden" id = "write">
+            <button onclick = "save()" style = "display: none" id = "save">Save</button>
+        </div>
+        <script>
+            function notes() {
+                document.getElementById("write").type = "text";
+                document.getElementById("save").style.display = "inline";
+            }
+            function save() {
+                document.getElementById("save").style.display = "none";
+                document.getElementById("write").type = "hidden";
+            }
+        </script>
+    </body>
+</html>
