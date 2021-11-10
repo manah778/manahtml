@@ -2,35 +2,239 @@
     <head>
         <title>Admin Page</title>
         <style>
+            body {
+                background-image: url("background-turtle.jpg");
+                
+            }
+            #header {
+                width: 100%;
+                height: 10%;
+                position: fixed;
+                top: 0%;
+                left: 0%;
+                background-color: #bbbfc9;
+                box-shadow: 10px 0px 20px black;
+                z-index: 10;
+            }
+            #logo {
+                height: 90%;
+                position: absolute;
+                top: 5%;
+                left: 0.5%;
+                z-index: 10;
+            }
+            #main {
+                width: 75%;
+                height: 100%;
+                position: absolute;
+                top: 0%;
+                left: 12.5%;
+                background-color: rgba(255, 255, 255, 0.75);
+            }
+            #addPet {
+                position: absolute;
+                top: 15%;
+                right: 5%;
+                width: 12%;
+                height: 7%;
+            }
+            #addPet:hover, #ready:hover, #notes:hover, #save:hover, #add:hover {
+                background-color: #4f92ff;
+                cursor: pointer;
+            }
             #pet {
-                width: 200px;
-                height: 200px;
-                background-color: black;
-                color: white;
+                width: 90%;
+                height: 20%;
+                position: absolute;
+                top: 30%;
+                left: 5%;
+                border-radius: 10px;
+                border: none;
+                background-color: #bbbfc9;
+                box-shadow: 0px 2px 10px grey;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            #petName {
+                position: absolute;
+                top: 12%;
+                left: 15%;
+                font-size: 18px;
+            }
+            #ownerName {
+                position: absolute;
+                left: 15%;
+                top: 35%;
+                font-size: 16px;
+            }
+            #ready, #addPet, #notes, #save, #add {
+                font-size: 100%;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                border-radius: 10px;
+                border: none;
+                background-color: #82b2ff;
+                box-shadow: 0px 2px 10px grey;
+            }
+            #ready {
+                width: 15%;
+                height: 25%;
+                position: absolute;
+                bottom: 10%;
+                right: 19%;
+            }
+            #notes {
+                width: 15%;
+                height: 25%;
+                position: absolute;
+                bottom: 10%;
+                right: 2%;
+            }
+            #dog {
+                width: 10%; 
+                border-radius: 10px; 
+                position: absolute; 
+                top: 12%; 
+                left: 2%
+            }
+            #write {
+                width: 96%;
+                height: 30%;
+                position: absolute;
+                bottom: 20%;
+                left: 2%;
+                padding: 2%;
+            }
+            #save {
+                width: 10%;
+                height: 10%;
+                position: absolute;
+                bottom: 5%;
+                right: 2%;
+            }
+            #newPet {
+                display: none;
+                background-color: #bbbfc9;
+                position: absolute;
+                top: 30%;
+                left: 5%;
+                Width: 86.5%;
+                height: 55%; 
+                border-radius: 10px; 
+                box-shadow: 0px 2px 10px grey;
+                padding: 20px;
+                z-index: 100;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            #testingParams {
+                display: none;
+            }
+            input {
+                border-radius: 10px;
+                border: none;
+                font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            #info {
+                padding: 1%;
+                height: 7%;
+            }
+            #add {
+                width: 10%;
+                height: 7%;
+                position: absolute;
+                right: 2%;
+                bottom: 5%;
             }
         </style>
     </head>
     <body>
-        <div id = "pet">
-            <div id = "picture">
-
-            </div>
-            <p id = "petName">Sarah</p>
-            <p id = "petDescript">Ginger</p>
-            <button onclick = "ready()" id = "ready">Ready for Pickup</button>
-            <button onclick = "notes()" id = "notes">Add Notes</button>
-            <input autocomplete="off" type = "hidden" id = "write">
-            <button onclick = "save()" style = "display: none" id = "save">Save</button>
+        <div id = "header">
+            <img src = "doggo.png" id = "logo">
         </div>
+        <div id = "main">
+            <button onclick = "addPet()" id = "addPet">Add a Pet</button>
+            <div id = "newPet">
+                <label>Pet Name:</label>
+                <input type = "text" id = "info">
+                <br>
+                <br>
+                <label>Owner Name:</label>
+                <input type = "text" id = "info">
+                <br>
+                <br>
+                <label>Pet Type:</label>
+                <input type = "text" id = "info">
+                <br>
+                <br>
+                <label>Owner's Phone Number:</label>
+                <input type = "text" id = "info">
+                <br>
+                <br>
+                <label>Day's Quarantined:</label>
+                <input type = "number" id = "info">
+                <br>
+                <br>
+                <label>Testing:</label>
+                <input type = "checkbox" id = "testToggle">
+                <div id = "testingParams">
+                    <p>This will allow for a day to last 30 seconds for testing the message api used by twillio. Or you could specify 2 days and make a day last 2 minutes to test the check out process.</p>
+                    <p>Day length (use m for minutes and s for seconds. Others will be rejected). Example: 2m</p>
+                    <input type = "text" id = "info">
+                </div>
+                <button onclick = "add()" id = "add">Add</button>
+            </div>
+            <div id = "petInfo">
+                
+            </div>
+            <div id = "pet">
+                <div id = "picture">
+                    <img src = "dog.jpg" id = "dog">
+                </div>
+                <p id = "petName">[Pet's Name]</p>
+                <p id = "ownerName">[Owner's Name]</p>
+                <button onclick = "ready()" id = "ready">Ready for Pickup</button>
+                <button onclick = "notes()" id = "notes">Add Notes</button>
+                <input autocomplete="off" type = "hidden" id = "write" placeholder = "Add Notes...">
+                <button onclick = "save()" style = "display: none" id = "save">Save</button>
+            </div>
+        </div>
+
         <script>
             function notes() {
                 document.getElementById("write").type = "text";
                 document.getElementById("save").style.display = "inline";
+                document.getElementById("pet").style.height = "45%";
+                document.getElementById("notes").style.bottom = "60%";
+                document.getElementById("notes").style.height = "10%";
+                document.getElementById("ready").style.bottom = "60%";
+                document.getElementById("ready").style.height = "10%";
+                document.getElementById("petName").style.top = "5%";
+                document.getElementById("ownerName").style.top = "15%";
+                document.getElementById("dog").style.top = "5%";
             }
             function save() {
                 document.getElementById("save").style.display = "none";
                 document.getElementById("write").type = "hidden";
+                document.getElementById("pet").style.height = "20%";
+                document.getElementById("notes").style.bottom = "10%";
+                document.getElementById("notes").style.height = "30%";
+                document.getElementById("ready").style.bottom = "10%";
+                document.getElementById("ready").style.height = "30%";
+                document.getElementById("petName").style.top = "12%";
+                document.getElementById("ownerName").style.top = "35%";
+                document.getElementById("dog").style.top = "12%";
             }
+            function addPet() {
+                document.getElementById("newPet").style.display = "block";
+                document.getElementById("pet").style.top = "100%";
+            }
+            function add() {
+                document.getElementById("newPet").style.display = "none";
+                document.getElementById("pet").style.top = "30%";
+            }
+            document.getElementById("testToggle").addEventListener("change", ()=>
+            {
+                if(document.getElementById("testToggle").checked) document.getElementById("testingParams").style.display = "inline" 
+                else document.getElementById("testingParams").style.display = "none"
+            })
         </script>
     </body>
 </html>
